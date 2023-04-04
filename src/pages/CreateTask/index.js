@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; 
 
 const CreateTask = (props) => {
     const [taskList, setTaskList] = useState([])    
@@ -17,6 +18,8 @@ const CreateTask = (props) => {
     }
     return (
         <div>
+            <Link to="/resourcecard" className="btn btn-primary">Start</Link>
+            
             <fieldset>
                 <legend>Fill the fields</legend>
                 <div>

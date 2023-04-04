@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; 
 
 const Dashboard = (props) => {
     return (
@@ -9,7 +10,7 @@ const Dashboard = (props) => {
             <p>Resource Cards</p>
             <p>Risk Pool</p>
             <p>Emails</p>
-            <button>Start</button>
+            <Link to="/brief" className="btn btn-primary">Start</Link>
         </div>
     );
 }

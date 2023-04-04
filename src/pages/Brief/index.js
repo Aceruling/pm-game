@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from "react-router-dom"; 
 import Modal from 'react-modal';
 import './brief.css';
 
@@ -104,7 +104,7 @@ const Brief = (props) => {
 
     return (
       <div className='m-2'>
-
+          <Link to="/create-task" className="btn btn-primary">Start</Link>
         <h4 className="bg-info text-white text-center p-2 mt-4">Creating Project Brief</h4>
 
         <div className='form-group m-5'>
