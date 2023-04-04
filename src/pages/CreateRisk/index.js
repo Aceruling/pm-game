@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 let uniqueNumber = 0
-const CreaetRisk = (props) => {
+const CreateRisk = (props) => {
     const [timeCheck, setTimeCheck] = useState(false)
     const [budgetCheck, setBudgetCheck] = useState(false)
     const [qualityCheck, setQualityCheck] = useState(false)
@@ -39,6 +39,7 @@ const CreaetRisk = (props) => {
         }
         else setMotivationID("")
     }
+    
     return (
         <div>
             <fieldset>
@@ -68,4 +69,4 @@ const CreaetRisk = (props) => {
         </div>
     );
 }
-export default CreaetRisk
+export default CreateRisk
