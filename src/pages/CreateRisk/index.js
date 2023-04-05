@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; 
 
 let uniqueNumber = 0
 const CreateRisk = (props) => {
@@ -42,6 +43,8 @@ const CreateRisk = (props) => {
     
     return (
         <div>
+            <Link to="/create-email" className="btn btn-primary">Next</Link>
+            <Link to="/" className="btn btn-primary">Start</Link>
             <fieldset>
                 <legend>Choose your interests</legend>
                 <div>
