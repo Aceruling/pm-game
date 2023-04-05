@@ -56,6 +56,7 @@ const Brief = (props) => {
     }
 
     function closeModal(type) {
+        console.log(type)
         if(type == "Scope") setScopeIsOpen(false);
         else setIsOpen(false);
     }
@@ -127,7 +128,7 @@ const Brief = (props) => {
             <button className="btn btn-primary m-2" onClick={() => clickModalButton("Time")}>Time</button>
             <button className="btn btn-primary m-2" onClick={() => clickModalButton("Motivation")}>Motivation</button>
             <button className="btn btn-primary m-2" onClick={() => clickModalButton("Scope")}>Scope</button>
-            <button className="btn btn-primary m-2" onClick={()=>print()}>console</button>
+            {/* <button className="btn btn-primary m-2" onClick={()=>print()}>console</button> */}
                 <Modal isOpen={modalIsOpen} onAfterOpen={() => afterOpenModal("other")} onRequestClose={() => closeModal("other")} style={customStyles} contentLabel="Example Modal">
                     <h2 ref={(_subtitle) => (subtitle1 = _subtitle)}>{modalTitle}</h2>
                     <form>
@@ -138,7 +139,7 @@ const Brief = (props) => {
                     </form>
                     <div className='row'>
                         <button className="btn btn-primary m-2 col-5" onClick={saveModal}>save</button>
-                        <button className="btn btn-primary m-2 col-5" onClick={closeModal}>close</button>
+                        <button className="btn btn-primary m-2 col-5" onClick={() => closeModal("other")}>close</button>
                     </div>
                     
                 </Modal>
@@ -149,12 +150,14 @@ const Brief = (props) => {
                     <select className='form-control' value={ wpType } onChange={(e) => {setWPType(e.target.value)}}> { workPackage.map(s =><option value={s} key={s}>{s}</option> )} </select>
                 </div>
                 <div className='row m-2'>
+                    <label>Quality</label>
                     <div className='form-control col-5'>
                             <label>Name</label>
                             <input className="form-control" value={wpTypeName1} onChange={(e) => {setWPTypeName1(e.target.value)}}/>
                             <label>Value</label>
                             <input className="form-control" value={wpTypeValue1} onChange={(e) => {setWPTypeValue1(e.target.value)}}/>
                     </div>
+                    <label>Acceptable Quality</label>
                     <div className='form-control col-5'>
                             <label>Name</label>
                             <input className="form-control" value={wpTypeName2} onChange={(e) => {setWPTypeName2(e.target.value)}}/>
@@ -163,8 +166,8 @@ const Brief = (props) => {
                     </div>
                     <div className='row'>
                         <button className="btn btn-primary m-2 col-3" onClick={addModal}>Add</button>
-                        <button className="btn btn-primary m-2 col-3" onClick={saveModal}>save</button>
-                        <button className="btn btn-primary m-2 col-3" onClick={closeModal}>close</button>
+                        {/* <button className="btn btn-primary m-2 col-3" onClick={saveModal}>save</button> */}
+                        <button className="btn btn-primary m-2 col-3" onClick={() => closeModal("Scope")}>close</button>
                     </div>
                     <div className='row'>
                     <table className="table table-striped table-bordered table-sm">
