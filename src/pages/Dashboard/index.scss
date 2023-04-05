@@ -1,0 +1,78 @@
+@import '../../global/basic.scss';
+.bd-example {
+    position: relative;
+    height: 100%;
+    overflow: auto;
+    min-height: 100vh;
+}
+
+.flex {
+    display: flex;
+}
+
+.full-container {
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+}
+
+#navbar-example {
+    height: 100%;
+}
+
+#navbar-example.navbar {
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+#navbar-example .navbar-brand {
+    font-size: 28px;
+}
+
+main {
+    flex: auto;
+    height: 100vh;
+}
+
+.form-container {
+    position: relative;
+    justify-content: space-between;
+}
+
+.scrollspy-example-2 {
+    /* position: relative;
+    height: 100%;
+    overflow: auto;
+    min-height: 100vh; */
+}
+
+.sidebar {
+    width: 280px;
+}
+
+.form-input {
+    height: 100%;
+    overflow: auto;
+    padding: 16px;
+}
+.footer {
+    padding: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    /* padding-top: 16px;
+    padding-bottom: 16px; */
+    border-top: 1px solid #c7c8c9;
+    justify-content: flex-end;    
+}
+
+.footer .control-panel {
+    gap: 8px;
+}
+.nav-link {
+    color: $specialColor !important;
+    &.active {
+        color: $componentColor !important;
+        background-color: transparent !important;
+        text-decoration: underline;
+    }
+}

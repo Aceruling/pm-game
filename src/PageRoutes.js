@@ -14,11 +14,11 @@ const PageRoutes = (props) => {
           <Routes>
               <Route exact path="/" element={<Navigate to="/dashboard"/>}></Route>
               <Route path="/dashboard" element={<Dashboard /> } />
-              <Route path="/create-risk" element={<CreateRisk /> } />
+              {/* <Route path="/create-risk" element={<CreateRisk /> } />
               <Route path="/create-task" element={<CreateTask /> } />
               <Route path="/create-email" element={<CreateEmail /> } />
               <Route path="/brief" element={ <Brief/> } />
-              <Route path="/resourcecard" element={ <ResourceCard/> } />
+              <Route path="/resourcecard" element={ <ResourceCard/> } /> */}
           </Routes>
           </BrowserRouter>
         </div>

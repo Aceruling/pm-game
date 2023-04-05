@@ -18,7 +18,8 @@ const CreateTask = (props) => {
     }
     return (
         <div>
-            <Link to="/resourcecard" className="btn btn-primary">Start</Link>
+            <Link to="/resourcecard" className="btn btn-primary">Next</Link>
+            <Link to="/" className="btn btn-primary">Start</Link>
             
             <fieldset>
                 <legend>Fill the fields</legend>

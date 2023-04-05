@@ -36,6 +36,7 @@ const CreateEmail = (props) => {
     }
     return (
         <div>
+            <Link to="/" className="btn btn-primary">Start</Link>
             <fieldset>
                 <legend>Normal</legend>
                 <div>
