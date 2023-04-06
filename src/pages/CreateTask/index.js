@@ -9,11 +9,25 @@ const CreateTask = (props) => {
 
     const createTaskFunc = () => {
         let _taskList = [...taskList]
-        _taskList.push({
+        console.log("_taskList: ", taskList)
+        let maxID = 0;
+        for (var i in taskList) {
+            maxID = taskList[i].id > maxID ? taskList[i].id : maxID
+        }
+        const _id = maxID + 1
+        setTaskList([...taskList, {
+            id: _id,
             name: taskName,
             project: taskProject,
-            workpackage: taskWorkpackage
-        })
+            workpackage: taskWorkpackage,
+            parallel: false
+        }])
+    }
+    const clickParallelCheckBox = (id) => {
+        let _taskList = [...taskList]
+        console.log("taskList: ", _taskList)
+        const found = _taskList.find(element => element.id === id);
+        found.parallel = !found.parallel
         setTaskList(_taskList)
     }
     return (
@@ -50,6 +64,8 @@ const CreateTask = (props) => {
                     <th>name</th>
                     <th>project</th>
                     <th>workpackage</th>
+                    <th>parallel</th>
+                    <th></th>
                 </tr>
                 {
                     taskList.map((val, key) => {
@@ -58,6 +74,21 @@ const CreateTask = (props) => {
                                 <td>{val.name}</td>
                                 <td>{val.project}</td>
                                 <td>{val.workpackage}</td>
+                                <td><input type="checkbox" checked={val.parallel} onChange={() => clickParallelCheckBox(val.id)} name="time"/></td>
+                                <td>
+                                {
+                                    val.parallel === true &&
+                                    <select name="selectedFruit" defaultValue={taskProject}>
+                                        {
+                                            taskList.map((val, key) => {
+                                                return (
+                                                    <option value={val.id}>{val.name}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                }
+                                </td>
                             </tr>
                         )
                     })
