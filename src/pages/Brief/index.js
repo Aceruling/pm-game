@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Link } from "react-router-dom"; 
-import Modal from 'react-modal';
+import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react';
+import {connect} from 'react-redux'
+
+import { saveBriefData } from '../../actions/gameActions'
 import './index.scss';
 
 const customStyles = {
@@ -15,19 +16,21 @@ const customStyles = {
   };
   let budgetValue, budgetTolerance, timeValue, timeTolerance, motivationValue, motivationTolerance, qualityValue, qualityTolerance;
   let subtitle1, subtitle2
-const Brief = (props) => {
-
+  let projectasdf = ""
+const Brief = forwardRef((props, ref) => {
+    const { saveBriefData } = props;
     const [modalTitle, setModalTitle] = useState("Time");
     const [valueTitle, setvalueTitle] = useState("Correct Value");
     const [toleranceTitle, settoleranceTitle] = useState("Acceptable Value");
     const [value, setvalue] = useState("");
     const [tolerance, settolerance] = useState("");
     const [workPackageArray, setworkPackageArray] = useState([]);
-    const [workPackageCategory, setworkPackageCategory] = useState("");
+    const [workPackageCategory, setworkPackageCategory] = useState("IT");
     const [projectTitle, setProjectTitle] = useState("")
     const [projectDes, setProjectDes] = useState("")
 
-    const [wpType, setWPType] = useState("");
+    const [wpType, setWPType] = useState("Product");
+    const [wpName, setWPName] = useState("");
     const [wpTypeName1, setWPTypeName1] = useState("");
     const [wpTypeValue1, setWPTypeValue1] = useState("");
     const [wpTypeName2, setWPTypeName2] = useState("");
@@ -38,6 +41,18 @@ const Brief = (props) => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [scopeModalIsOpen, setScopeIsOpen] = useState(false);
 
+    useEffect(() => {
+        projectasdf = projectTitle
+    }, [projectTitle])
+    useImperativeHandle(ref, () => ({
+        savePageData() {
+            saveBriefData({
+                projectName: projectTitle,
+                workPackages: workPackageArray
+            })
+            console.log("project title: ", projectTitle)
+        }
+    }))
     const clickModalButton = (type) => {
         setModalTitle(type)
         if(type == "Scope") openModal("Scope");
@@ -88,6 +103,7 @@ const Brief = (props) => {
         let temp = [...workPackageArray];
         temp.push({
             type: wpType,
+            packageName: wpName,
             name1: wpTypeName1,
             value1: wpTypeValue1,
             name2: wpTypeName2,
@@ -111,7 +127,8 @@ const Brief = (props) => {
                 </div>
 
                 <div className='form-group'>
-                    <select placeholder='Project Category' className='form-control' value={ workPackageCategory } onChange={(e) => {setworkPackageCategory(e.target.value)}}> { category.map(s =><option value={s} key={s}>{s} category</option> )} </select>
+                    <select placeholder='Project Category' className='form-control' value={ workPackageCategory } onChange={(e) => {setworkPackageCategory(e.target.value)}}> 
+                    { category.map(s =><option value={s} key={s}>{s} category</option> )} </select>
                 </div>
 
                 <div className='form-group'>
@@ -163,6 +180,10 @@ const Brief = (props) => {
                 <select className='form-control' value={ wpType } onChange={(e) => {setWPType(e.target.value)}}> { workPackage.map(s =><option value={s} key={s}>{s}</option> )} </select>
             </div>
 
+            <div className='form-group'>
+                <input placeholder='Workpackage Name' className='form-control' value={wpName} onChange={(e) => {setWPName(e.target.value)}}></input>
+            </div>
+
             <div className='form-group row'>
 
                 <div className='col-sm-6'>
@@ -194,13 +215,14 @@ const Brief = (props) => {
             <div className='form-group'>
             <table className="table table-striped table-bordered table-sm">
                         <thead className="bg-info text-white">
-                            <tr><th>Type</th><th>Name1</th><th>value1</th><th>Name2</th><th>value2</th></tr>
+                            <tr><th>Name</th><th>Type</th><th>Quality</th><th>value1</th><th>Acceptable Quality</th><th>value2</th></tr>
                         </thead>
                             <tbody>
                             {
                                 workPackageArray.map((val, key) => {
                                     return (
                                         <tr key={key}>
+                                            <td>{val.packageName}</td>
                                             <td>{val.type}</td>
                                             <td>{val.name1}</td>
                                             <td>{val.value1}</td>
@@ -225,6 +247,11 @@ const Brief = (props) => {
 
       </div>
     );
-}
+})
 
-export default Brief;
+const mapStateToProps  = (state) => (
+    {
+        
+    }
+)
+export default connect(mapStateToProps, {saveBriefData}, null, {forwardRef: true})(Brief)

@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
+import {connect} from 'react-redux'
 import { Link } from "react-router-dom"; 
 
 const CreateTask = (props) => {
+    const { briefData } = props
     const [taskList, setTaskList] = useState([])    
     const [taskName, setTaskName] = useState("")
     const [taskProject, setTaskProject] = useState("")
     const [taskWorkpackage, setTasWorkpackage] = useState("")
 
+    useEffect(() => {
+        console.log("briefData: ", briefData)
+    }, [])
     const createTaskFunc = () => {
         let _taskList = [...taskList]
         console.log("_taskList: ", taskList)
@@ -44,17 +49,17 @@ const CreateTask = (props) => {
                 <div>
                     <label>project </label>
                     <select name="selectedFruit" defaultValue={taskProject} onChange={(e)=>setTaskProject(e.target.value)}>
-                        <option value="ProjectA">ProjectA</option>
-                        <option value="ProjectB">ProjectB</option>
-                        <option value="ProjectC">ProjectC</option>
+                        <option value="ProjectA">{briefData.projectName}</option>
                     </select>
                 </div>
                 <div>
                     <label>workpackage </label>
                     <select name="selectedFruit" defaultValue={taskWorkpackage} onChange={(e)=>setTasWorkpackage(e.target.value)}>
-                        <option value="product">Product</option>
-                        <option value="service">Service</option>
-                        <option value="document">Document</option>
+                        {
+                            briefData.workPackages.map(_wp => {
+                                return <option value="product">{_wp.packageName}</option>
+                            })
+                        }
                     </select>
                 </div>
                 <button onClick={createTaskFunc}>Create Task</button>
@@ -97,4 +102,10 @@ const CreateTask = (props) => {
         </div>
     );
 }
-export default CreateTask
+
+const mapStateToProps  = (state) => (
+    {
+        briefData: state.gameData.briefData
+    }
+)
+export default connect(mapStateToProps, {})(CreateTask)

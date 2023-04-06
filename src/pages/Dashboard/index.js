@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import { Link } from "react-router-dom"; 
 import './index.scss';
 import Brief from '../Brief'
@@ -9,12 +9,18 @@ import CreateEmail from '../CreateEmail';
 
 const Dashboard = (props) => {
     const [status, setStatus] = React.useState(0);
-
+    const pageRef = useRef();
     const onPrev = () => {
+        if(status === 0) {
+            pageRef.current.savePageData()    
+        }
         setStatus(status > 0 ? status - 1 : 0 )
     }
 
     const onNext = () => {
+        if(status === 0) {
+            pageRef.current.savePageData()    
+        }
         setStatus(status < 4 ? status + 1 : 4 )
     }
     return (
@@ -33,11 +39,11 @@ const Dashboard = (props) => {
             </div>
             <main className="form-container flex flex-column">
                 <div className="form-input">
-                { status === 0 ?    <Brief />
-                : status === 1 ?  <CreateTask />
-                : status === 2 ?  <ResourceCard />
-                : status === 3 ?  <CreateRisk />
-                : status === 4 ?  <CreateEmail />
+                { status === 0 ?    <Brief ref={pageRef}/>
+                : status === 1 ?  <CreateTask ref={pageRef} />
+                : status === 2 ?  <ResourceCard ref={pageRef} />
+                : status === 3 ?  <CreateRisk ref={pageRef} />
+                : status === 4 ?  <CreateEmail ref={pageRef} />
                 : <></>
                 }
                 </div>
