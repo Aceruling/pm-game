@@ -50,10 +50,12 @@ const CreateEmail = (props) => {
             </div>
 
             <div className="form-group mt-3">
-                <table className="wide">
-                    <tr>
-                        <th>mail</th>
-                    </tr>
+                <table className="table table-striped table-bordered wide">
+                    <thead className="bg-info text-white">
+                        <tr>
+                            <th>mail</th>
+                        </tr>
+                    </thead>
                     {
                         normalEmailList.map((val, key) => {
                             return (
@@ -116,12 +118,14 @@ const CreateEmail = (props) => {
                 </div>
 
                 <div className="form-group mt-3">
-                    <table className="wide">
-                        <tr>
-                            <th>mail</th>
-                            <th>Answer A </th>
-                            <th>Answer B</th>
-                        </tr>
+                    <table className="table table-striped table-bordered wide">
+                        <thead className="bg-info text-white">
+                            <tr>
+                                <th>mail</th>
+                                <th>Answer A </th>
+                                <th>Answer B</th>
+                            </tr>
+                        </thead>
                         {
                             decisionEmailList.map((val, key) => {
                                 return (

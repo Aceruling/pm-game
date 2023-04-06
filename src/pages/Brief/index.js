@@ -13,76 +13,30 @@ const customStyles = {
       transform: 'translate(-50%, -50%)',
     },
   };
-  let budgetValue, budgetTolerance, timeValue, timeTolerance, motivationValue, motivationTolerance, qualityValue, qualityTolerance;
   let subtitle1, subtitle2
 const Brief = (props) => {
 
-    const [modalTitle, setModalTitle] = useState("Time");
-    const [valueTitle, setvalueTitle] = useState("Correct Value");
-    const [toleranceTitle, settoleranceTitle] = useState("Acceptable Value");
-    const [value, setvalue] = useState("");
-    const [tolerance, settolerance] = useState("");
-    const [workPackageArray, setworkPackageArray] = useState([]);
-    const [workPackageCategory, setworkPackageCategory] = useState("");
-    const [projectTitle, setProjectTitle] = useState("")
-    const [projectDes, setProjectDes] = useState("")
+    const category = ["IT", "Construct", "Cook"];
+    const workPackage = ["Product", "Service", "Document"];
 
-    const [wpType, setWPType] = useState("");
+    const [workPackageArray, setworkPackageArray] = useState([]);
+    const [workPackageCategory, setworkPackageCategory] = useState(category[0]);
+    const [projectTitle, setProjectTitle] = useState("");
+    const [projectDes, setProjectDes] = useState("");
+
+    const [budgetValue, setBudgetValue] = useState("");
+    const [budgetTolerance, setBudgetTolerance] = useState("");
+    const [timeValue, setTimeValue] = useState("");
+    const [timeTolerance, setTimeTolerance] = useState("");
+    const [motivationValue, setMotivationValue] = useState("");
+
+    const [wpType, setWPType] = useState(workPackage[0]);
     const [wpTypeName1, setWPTypeName1] = useState("");
     const [wpTypeValue1, setWPTypeValue1] = useState("");
     const [wpTypeName2, setWPTypeName2] = useState("");
     const [wpTypeValue2, setWPTypeValue2] = useState("");
     
-    const category = ["IT", "Construct", "Cook"];
-    const workPackage = ["Product", "Service", "Document"];
-    const [modalIsOpen, setIsOpen] = useState(false);
-    const [scopeModalIsOpen, setScopeIsOpen] = useState(false);
 
-    const clickModalButton = (type) => {
-        setModalTitle(type)
-        if(type == "Scope") openModal("Scope");
-        else openModal("other")
-    }
-    function openModal (type) {
-        if(type == "Scope") setScopeIsOpen(true);
-        else setIsOpen(true);
-    }
-
-    const afterOpenModal = (type) => {
-        if(type == "Scope") {
-            subtitle2.style.color = '#foo';
-        }
-        else subtitle1.style.color = '#foo';
-    }
-
-    function closeModal(type) {
-        console.log(type)
-        if(type == "Scope") setScopeIsOpen(false);
-        else setIsOpen(false);
-    }
-
-    function saveModal () {
-        console.log(modalTitle)
-        switch(modalTitle)
-        {
-            case "Budget":
-                    budgetValue = value;
-                    budgetTolerance = tolerance;
-                    break;
-            case "Time":
-                    timeValue = value;
-                    timeTolerance = tolerance;
-                    break;
-            case "Motivation":
-                    motivationValue = value;
-                    motivationTolerance = tolerance;
-                    break;
-            case "Quality":
-                    // qualityValue = value;
-                    // qualityTolerance = value;
-        }
-        closeModal()
-    }
 
     function addModal() {
         let temp = [...workPackageArray];
@@ -96,12 +50,6 @@ const Brief = (props) => {
         setworkPackageArray(temp)
     }
 
-    const print = () => {
-        console.log(budgetTolerance)
-        console.log(timeTolerance)
-        console.log(motivationTolerance)
-        console.log(qualityTolerance)
-    }
 
     return (
       <div className='brief-page admin-sub-page row'>
@@ -111,7 +59,7 @@ const Brief = (props) => {
                 </div>
 
                 <div className='form-group'>
-                    <select placeholder='Project Category' className='form-control' value={ workPackageCategory } onChange={(e) => {setworkPackageCategory(e.target.value)}}> { category.map(s =><option value={s} key={s}>{s} category</option> )} </select>
+                    <select placeholder='Project Category' className='form-control' value={ workPackageCategory } onChange={(e) => {setworkPackageCategory(e.target.value)}}> { category.map(s =><option value={s} key={s}>{s}</option> )} </select>
                 </div>
 
                 <div className='form-group'>
@@ -125,11 +73,11 @@ const Brief = (props) => {
                     </div> */}
 
                     <div className='col-sm-6'>
-                        <input placeholder='Budget' className='form-control' value={ projectTitle } onChange={(e) => {setProjectTitle(e.target.value)}}></input>
+                        <input placeholder='Budget' className='form-control' value={ budgetValue } onChange={(e) => {setBudgetValue(e.target.value)}}></input>
                     </div>
 
                     <div className='col-sm-6'>
-                        <input placeholder='Budget Tolorance' className='form-control' value={ projectTitle } onChange={(e) => {setProjectTitle(e.target.value)}}></input>
+                        <input placeholder='Budget Tolorance' className='form-control' value={ budgetTolerance } onChange={(e) => {setBudgetTolerance(e.target.value)}}></input>
                     </div>
 
                 </div>
@@ -137,17 +85,17 @@ const Brief = (props) => {
                 <div className='form-group row'>
 
                     <div className='col-sm-6'>
-                        <input placeholder='Time' className='form-control' value={ projectTitle } onChange={(e) => {setProjectTitle(e.target.value)}}></input>
+                        <input placeholder='Time' className='form-control' value={ timeValue } onChange={(e) => {setTimeValue(e.target.value)}}></input>
                     </div>
 
                     <div className='col-sm-6'>
-                        <input placeholder='Time Tolorance' className='form-control' value={ projectTitle } onChange={(e) => {setProjectTitle(e.target.value)}}></input>
+                        <input placeholder='Time Tolorance' className='form-control' value={ timeTolerance } onChange={(e) => {setTimeTolerance(e.target.value)}}></input>
                     </div>
 
                 </div>
 
                 <div className='form-group'>
-                    <input placeholder='Motivation: 50%' className='form-control' value={ projectTitle } onChange={(e) => {setProjectTitle(e.target.value)}}></input>
+                    <input placeholder='Motivation: 50%' className='form-control' value={ motivationValue } onChange={(e) => {setMotivationValue(e.target.value)}}></input>
                 </div>
             </div>
         

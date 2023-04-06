@@ -3,8 +3,10 @@ import './index.scss'
 
 const ResourceCard = (props) => {
 
+    const industry = ["IT", "Construct", "Cook"];
+
     const [resourceName, setResourceName] = useState("");
-    const [resourceIndustry, setResourceIndustry] = useState("");
+    const [resourceIndustry, setResourceIndustry] = useState(industry[0]);
     const [attriTechnical, setAttriTechnical] = useState("");
     const [attriATD, setAttriATD] = useState("");
     const [attriCommunication, setAttriCommunication] = useState("");
@@ -12,7 +14,7 @@ const ResourceCard = (props) => {
     const [attriSpeed, setAttriSpeed] = useState("");
     const [resource, setResource] = useState([]);
 
-    const industry = ["IT", "Construct", "Cook"];
+
 
     function addModal() {
         let temp = [...resource];
