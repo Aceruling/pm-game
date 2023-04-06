@@ -1,0 +1,36 @@
+.risk-page {
+  text-align: left;
+  .basic-setting {
+    display: grid;
+    gap: 20px;
+  }
+  .checkbox-size {
+    width: 20px;
+    height: 20px;
+  }
+  .font-30 {
+    font-size: 20px;
+  }
+  .risk-check {
+    width: 170px;
+    justify-content: left;
+    display: flex;
+    align-items: center;
+    label {
+      margin-left: 20px;
+    }
+  }
+  .risk-name {
+    padding: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .risk-container {
+    margin-bottom: 20px;
+    display: grid;
+    gap: 20px;
+    .risk-cell {
+      display: flex;
+    }
+  }
+}

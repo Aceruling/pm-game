@@ -1,4 +1,10 @@
-.content {
+@import '../../global/basic.scss';
+.brief-page {
+  .basic-setting {
+    display: grid;
+    gap: 20px;
+  }
+  .content {
     top: '50%';
     left: '50%';
     right: 'auto';
@@ -6,3 +12,4 @@
     margin-Right: '-50%';
     transform: 'translate(-50%, -50%)';
   }
+}

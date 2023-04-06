@@ -2,4 +2,13 @@ $componentColor: #198754;
 $specialColor: #d91e00;
 .admin-sub-page {
     padding: 20px;
+    input:focus, .uneditable-input:focus, textarea:focus, select:focus {   
+        border-color: $componentColor !important;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6) !important;
+        outline: 0 none !important;
+    }
+    .gap-20 {
+        display: grid;
+        gap: 20px;
+    }
 }

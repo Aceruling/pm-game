@@ -1,9 +1,12 @@
 @import '../../global/basic.scss';
 
-.resource-page {
-    .create-content {
-        display: grid;
-        gap: 20px;
+.email-page {
+    .create-normal {
+    }
+    .create-decision {
+    }
+    .wide {
+        width: 100%
     }
 
 }

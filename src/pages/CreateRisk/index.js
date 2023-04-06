@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; 
+import './index.scss';
 
 let uniqueNumber = 0
 const CreateRisk = (props) => {
@@ -42,33 +43,39 @@ const CreateRisk = (props) => {
     }
     
     return (
-        <div>
-            <Link to="/create-email" className="btn btn-primary">Next</Link>
-            <Link to="/" className="btn btn-primary">Start</Link>
-            <fieldset>
-                <legend>Choose your interests</legend>
-                <div>
-                    <input type="checkbox" id="time" name="time" checked={timeCheck} onChange={() => setTimeCheck((prev) => !prev)}/>
-                    <label for="time">Time</label>
-                    <p>{timeID}</p>
+        <div className="risk-page admin-sub-page">
+            <div className="risk-container">
+                <div className="risk-cell">
+                    <div className="risk-check">
+                        <input className="checkbox-size" type="checkbox" id="time" name="time" checked={timeCheck} onChange={() => setTimeCheck((prev) => !prev)}/>
+                        <label className="font-30" for="time">Time</label>
+                    </div>
+                    <p className="font-30 risk-name">{timeID}</p>
                 </div>
-                <div>
-                    <input type="checkbox" id="budget" name="budget" checked={budgetCheck} onChange={() => setBudgetCheck((prev) => !prev)}/>
-                    <label for="budget">Budget</label>
-                    <p>{budgetID}</p>
+                <div className="risk-cell">
+                    <div className="risk-check">
+                        <input className="checkbox-size" type="checkbox" id="budget" name="budget" checked={budgetCheck} onChange={() => setBudgetCheck((prev) => !prev)}/>
+                        <label className="font-30" for="budget">Budget</label>
+                    </div>
+                    <p className="font-30 risk-name">{budgetID}</p>
                 </div>
-                <div>
-                    <input type="checkbox" id="qualtiy" name="qualtiy" checked={qualityCheck} onChange={() => setQualityCheck((prev) => !prev)}/>
-                    <label for="qualtiy">Quality</label>
-                    <p>{qualityID}</p>
+                <div className="risk-cell">
+                    <div className="risk-check">
+                        <input className="checkbox-size" type="checkbox" id="qualtiy" name="qualtiy" checked={qualityCheck} onChange={() => setQualityCheck((prev) => !prev)}/>
+                        <label className="font-30" for="qualtiy">Quality</label>
+                    </div>
+                    <p className="font-30 risk-name">{qualityID}</p>
                 </div>
-                <div>
-                    <input type="checkbox" id="motivation" name="motivation" checked={motivationCheck} onChange={() => setMotivationCheck((prev) => !prev)}/>
-                    <label for="motivation">Motivation</label>
-                    <p>{motivationID}</p>
+                <div className="risk-cell">
+                    <div className="risk-check">
+                        <input className="checkbox-size" type="checkbox" id="motivation" name="motivation" checked={motivationCheck} onChange={() => setMotivationCheck((prev) => !prev)}/>
+                        <label className="font-30" for="motivation">Motivation</label>
+                    </div>
+                        <p className="font-30 risk-name">{motivationID}</p>
                 </div>
-            </fieldset>
-            <button onClick={createRiskFunc}>Create Risk</button>
+            
+            </div>
+            <button className="btn btn-success" onClick={createRiskFunc}>Create Risk</button>
         </div>
     );
 }
