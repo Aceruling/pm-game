@@ -1,0 +1,10 @@
+@import '../../global/basic.scss';
+.task-page {
+    .create-content {
+        display: grid;
+        gap: 20px;
+    }
+    .wide {
+        width: 100%;
+    }
+}

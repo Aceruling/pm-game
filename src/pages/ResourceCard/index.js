@@ -3,8 +3,10 @@ import './index.scss'
 
 const ResourceCard = (props) => {
 
+    const industry = ["IT", "Construct", "Cook"];
+
     const [resourceName, setResourceName] = useState("");
-    const [resourceIndustry, setResourceIndustry] = useState("");
+    const [resourceIndustry, setResourceIndustry] = useState(industry[0]);
     const [attriTechnical, setAttriTechnical] = useState("");
     const [attriATD, setAttriATD] = useState("");
     const [attriCommunication, setAttriCommunication] = useState("");
@@ -12,7 +14,7 @@ const ResourceCard = (props) => {
     const [attriSpeed, setAttriSpeed] = useState("");
     const [resource, setResource] = useState([]);
 
-    const industry = ["IT", "Construct", "Cook"];
+
 
     function addModal() {
         let temp = [...resource];
@@ -36,7 +38,7 @@ const ResourceCard = (props) => {
                 </div>
 
                 <div className='form-group'>
-                        <select className='form-control' placeholder='Resource industry' value={ resourceIndustry } onChange={(e) => {setResourceIndustry(e.target.value)}}> { industry.map(s =><option value={s} key={s}>{s} industry</option> )} </select>
+                        <select className='form-control' placeholder='Resource industry' value={ resourceIndustry } onChange={(e) => {setResourceIndustry(e.target.value)}}> { industry.map(s =><option value={s} key={s}>{s}</option> )} </select>
                 </div>
 
                 <div className='form-group'>

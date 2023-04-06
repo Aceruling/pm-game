@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {connect} from 'react-redux'
 import { Link } from "react-router-dom"; 
+import './index.scss'
 
 const CreateTask = (props) => {
     const { briefData } = props
@@ -11,7 +12,14 @@ const CreateTask = (props) => {
 
     useEffect(() => {
         console.log("briefData: ", briefData)
-    }, [])
+        if(briefData) {
+            if(briefData.workPackages.length > 0) {
+                setTasWorkpackage(briefData.workPackages[0].packageName)
+            }
+            
+            setTaskProject(briefData.projectName)
+        }
+    }, [briefData])
     const createTaskFunc = () => {
         let _taskList = [...taskList]
         console.log("_taskList: ", taskList)
@@ -27,6 +35,7 @@ const CreateTask = (props) => {
             workpackage: taskWorkpackage,
             parallel: false
         }])
+        console.log("setTaskList: ", taskName, taskProject, taskWorkpackage)
     }
     const clickParallelCheckBox = (id) => {
         let _taskList = [...taskList]
@@ -36,42 +45,42 @@ const CreateTask = (props) => {
         setTaskList(_taskList)
     }
     return (
-        <div>
-            <Link to="/resourcecard" className="btn btn-primary">Next</Link>
-            <Link to="/" className="btn btn-primary">Start</Link>
-            
-            <fieldset>
+        <div className="row task-page admin-sub-page">
+            <div className="col-md-4">
+            <div className="create-content">
                 <legend>Fill the fields</legend>
                 <div>
-                    <label>name </label>
-                    <input value={taskName} onChange={(e)=>setTaskName(e.target.value)}></input>
+                    <input className="form-control" placeholder="name" value={taskName} onChange={(e)=>setTaskName(e.target.value)}></input>
                 </div>
                 <div>
-                    <label>project </label>
-                    <select name="selectedFruit" defaultValue={taskProject} onChange={(e)=>setTaskProject(e.target.value)}>
+                    <select className="form-control" name="selectedFruit" value={taskProject} onChange={(e)=>setTaskProject(e.target.value)}>
                         <option value="ProjectA">{briefData.projectName}</option>
                     </select>
                 </div>
                 <div>
-                    <label>workpackage </label>
-                    <select name="selectedFruit" defaultValue={taskWorkpackage} onChange={(e)=>setTasWorkpackage(e.target.value)}>
+                    <select className="form-control" name="selectedFruit" value={taskWorkpackage} onChange={(e)=>setTasWorkpackage(e.target.value)}>
                         {
                             briefData.workPackages.map(_wp => {
-                                return <option value="product">{_wp.packageName}</option>
+                                return <option value={_wp.packageName}>{_wp.packageName}</option>
                             })
                         }
                     </select>
                 </div>
-                <button onClick={createTaskFunc}>Create Task</button>
-            </fieldset>
-            <table>
-                <tr>
-                    <th>name</th>
-                    <th>project</th>
-                    <th>workpackage</th>
-                    <th>parallel</th>
-                    <th></th>
-                </tr>
+                <button className="btn btn-success" onClick={createTaskFunc}>Create Task</button>
+            </div>
+            </div>
+            <div className="col-md-8">
+                
+            <table className="table table-striped table-bordered wide">
+                <thead className="bg-info text-white">
+                    <tr>
+                        <th>name</th>
+                        <th>project</th>
+                        <th>workpackage</th>
+                        <th>parallel</th>
+                        <th></th>
+                    </tr>
+                </thead>
                 {
                     taskList.map((val, key) => {
                         return (
@@ -99,6 +108,7 @@ const CreateTask = (props) => {
                     })
                 }
             </table>
+            </div>
         </div>
     );
 }

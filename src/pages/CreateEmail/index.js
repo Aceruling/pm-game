@@ -9,15 +9,15 @@ const CreateEmail = (props) => {
     const [decisionEmailData, setDecisionEmailData] = useState({
         description: "",
         answer1: "",
-        time1: 0,
-        budget1: 0,
-        quality1: 0,
-        motivation1: 0,
+        time1: "",
+        budget1: "",
+        quality1: "",
+        motivation1: "",
         answer2: "",
-        time2: 0,
-        budget2: 0,
-        quality2: 0,
-        motivation2: 0
+        time2: "",
+        budget2: "",
+        quality2: "",
+        motivation2: ""
     })
     const changeDecisionEmailData = (type, value) => {
         setDecisionEmailData({
@@ -50,10 +50,12 @@ const CreateEmail = (props) => {
             </div>
 
             <div className="form-group mt-3">
-                <table className="wide">
-                    <tr>
-                        <th>mail</th>
-                    </tr>
+                <table className="table table-striped table-bordered wide">
+                    <thead className="bg-info text-white">
+                        <tr>
+                            <th>mail</th>
+                        </tr>
+                    </thead>
                     {
                         normalEmailList.map((val, key) => {
                             return (
@@ -116,12 +118,14 @@ const CreateEmail = (props) => {
                 </div>
 
                 <div className="form-group mt-3">
-                    <table className="wide">
-                        <tr>
-                            <th>mail</th>
-                            <th>Answer A </th>
-                            <th>Answer B</th>
-                        </tr>
+                    <table className="table table-striped table-bordered wide">
+                        <thead className="bg-info text-white">
+                            <tr>
+                                <th>mail</th>
+                                <th>Answer A </th>
+                                <th>Answer B</th>
+                            </tr>
+                        </thead>
                         {
                             decisionEmailList.map((val, key) => {
                                 return (
